@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta name="verify-admitad" content="c383c5e6b9">
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Промокоды и скидки — актуальные купоны</title>
+    <style>
+        /* ========== СИСТЕМНЫЕ ПЕРЕМЕННЫЕ ========== */
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --border: #2a2a2a;
+            --text-primary: #e5e5e5;
+            --text-secondary: #8e8e8e;
+            --accent: #00ff88;
+            --accent-hover: #00cc6f;
+            --danger: #ff3b30;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
+        }
+
+        /* ========== БАЗА ========== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ========== КОНТЕЙНЕР ========== */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ========== ШАПКА ========== */
+        .header {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .tagline {
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* ========== ПОИСК ========== */
+        .search-wrapper {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 16px 48px 16px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .search-input:focus {
+            border-color: var(--accent);
+        }
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+        .search-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        /* ========== КАРТОЧКИ ========== */
+        .coupon-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .coupon-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .store-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .discount-badge {
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        .code-wrapper {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .code {
+            flex: 1;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .code:hover {
+            background: rgba(0,255,136,0.1);
+            border-color: var(--accent);
+        }
+        .code.copied {
+            background: rgba(0,255,136,0.2);
+            color: var(--accent);
+        }
+        .copy-hint {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        .cta-button {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .cta-button:hover {
+            background: var(--accent-hover);
+        }
+        .expiry {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 12px;
+        }
+
+        /* ========== СТАТУСЫ ========== */
+        .loader {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--text-secondary);
+        }
+        .error {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--danger);
+        }
+        .empty {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--text-secondary);
+        }
+
+        /* ========== ФУТЕР ========== */
+        .footer {
+            margin-top: 60px;
+            padding: 24px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* ========== АДАПТИВ ========== */
+        @media (max-width: 600px) {
+            .container { padding: 16px; }
+            .coupon-card { padding: 16px; }
+            .card-header { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">PROMOCODES</div>
+            <div class="tagline">
+                <span class="status-dot"></span>
+                Актуальные купоны в режиме реального времени
+            </div>
+        </header>
+
+        <div class="search-wrapper">
+            <input type="text" class="search-input" placeholder="Поиск по магазинам..." id="search">
+            <span class="search-icon">⌘K</span>
+        </div>
+
+        <div class="loader" id="loader">Загрузка данных</div>
+        <div id="coupons"></div>
+
+        <footer class="footer">
+            Партнёрский сервис • Поддерживается Admitad • 2025
+        </footer>
+    </div>
+
+    <script>
+        // ========== НАСТРОЙКИ ПАРТНЁРКИ ==========
+        const ADMITAD_WEBMASTER_ID = '123456'; // ← ВСТАВЬ СВОЙ ID
+        const ADMITAD_CAMPAIGNS = ['12345', '67890']; // ← ID КАМПАНИЙ
+
+        // ========== ZIP-ФУНКЦИЯ ДЛЯ ДАТ ==========
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+        }
+
+        // ========== ЗАГРУЗКА КУПОНОВ ==========
+        async function loadCoupons() {
+            const container = document.getElementById('coupons');
+            const loader = document.getElementById('loader');
+            
+            try {
+                const url = `https://api.admitad.com/coupons/?campaign=${ADMITAD_CAMPAIGNS.join(',')}&limit=30`;
+                const proxy = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
+                
+                const resp = await fetch(proxy);
+                const data = await resp.json();
+                const list = JSON.parse(data.contents);
+
+                loader.style.display = 'none';
+
+                if (!list.length) {
+                    container.innerHTML = '<div class="empty">😴 Активные промокоды не найдены</div>';
+                    return;
+                }
+
+                container.innerHTML = list.map(coupon => `
+                    <div class="coupon-card" data-store="${coupon.name.toLowerCase()}">
+                        <div class="card-header">
+                            <div class="store-name">${coupon.name}</div>
+                            <div class="discount-badge">${coupon.discount || 'СКИДКА'}</div>
+                        </div>
+                        <div class="description">${coupon.description || 'Промокод для покупок в магазине'}</div>
+                        ${coupon.promocode ? `
+                            <div class="code-wrapper">
+                                <div class="code" onclick="copyCode(this)">
+                                    <span>${coupon.promocode}</span>
+                                    <span class="copy-hint">КОПИРОВАТЬ</span>
+                                </div>
+                            </div>
+                        ` : ''}
+                        <button class="cta-button" onclick="openStore('${coupon.tracking_link}')">
+                            Перейти в магазин →
+                        </button>
+                        <div class="expiry">
+                            ${coupon.date_end ? `Действует до ${formatDate(coupon.date_end)}` : ''}
+                        </div>
+                    </div>
+                `).join('');
+
+                setupSearch();
+
+            } catch (e) {
+                loader.style.display = 'none';
+                container.innerHTML = '<div class="error">❌ Ошибка загрузки данных</div>';
+                console.error(e);
+            }
+        }
+
+        // ========== ПОИСК ==========
+        function setupSearch() {
+            const search = document.getElementById('search');
+            search.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                document.querySelectorAll('.coupon-card').forEach(card => {
+                    const store = card.dataset.store;
+                    card.style.display = store.includes(term) ? 'block' : 'none';
+                });
+            });
+        }
+
+        // ========== КОПИРОВАНИЕ КОДА ==========
+        async function copyCode(element) {
+            const code = element.querySelector('span').textContent;
+            try {
+                await navigator.clipboard.writeText(code);
+                element.classList.add('copied');
+                element.querySelector('.copy-hint').textContent = 'СКОПИРОВАНО';
+                setTimeout(() => {
+                    element.classList.remove('copied');
+                    element.querySelector('.copy-hint').textContent = 'КОПИРОВАТЬ';
+                }, 1500);
+            } catch (e) {
+                alert(`Промокод: ${code}`);
+            }
+        }
+
+        // ========== ПЕРЕХОД В МАГАЗИН ==========
+        function openStore(url) {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
+        // ========== СТАРТ ==========
+        loadCoupons();
+    </script>
+</body>
+</html>
